@@ -79,10 +79,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Docuseal\\Docuseal\\DocusealServiceProvider"
+                "DocusealCo\\Docuseal\\DocusealServiceProvider"
             ],
             "aliases": {
-                "Docuseal": "Docuseal\\Docuseal\\Facades\\Docuseal"
+                "Docuseal": "DocusealCo\\Docuseal\\Facades\\Docuseal"
             }
         }
     },
