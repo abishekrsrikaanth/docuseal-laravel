@@ -6,11 +6,13 @@ use DateTime;
 use DocusealCo\Docuseal\Casts\DateTime as DateTimeCast;
 use DocusealCo\Docuseal\Concerns\HandlesConnection;
 use DocusealCo\Docuseal\Concerns\HandlesDataFilter;
+use DocusealCo\Docuseal\Concerns\OverridesDataObject;
 use DocusealCo\Docuseal\Enums\SubmissionOrder;
 use DocusealCo\Docuseal\Requests\Submissions\ArchiveSubmission;
 use DocusealCo\Docuseal\Requests\Submissions\CreateSubmission;
 use DocusealCo\Docuseal\Requests\Submissions\GetSubmission;
 use DocusealCo\Docuseal\Requests\Submissions\ListAllSubmissions;
+use Illuminate\Support\Arr;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 use Spatie\LaravelData\Attributes\WithCast;
@@ -21,6 +23,7 @@ class Submission extends Data
 {
     use HandlesConnection;
     use HandlesDataFilter;
+    use OverridesDataObject;
 
     public int $id;
 
@@ -123,7 +126,7 @@ class Submission extends Data
             'bcc_completed' => $this->bcc_completed,
             'reply_to' => $this->reply_to,
             'message' => $this->message?->toArray() ?? [],
-            'submitters' => $this->submitters,
+            'submitters' => Arr::map($this->submitters, static fn (Submitter $submitter) => $submitter->toArray()),
         ]);
     }
 }

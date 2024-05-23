@@ -5,6 +5,7 @@ namespace DocusealCo\Docuseal\Models;
 use DateTime;
 use DocusealCo\Docuseal\Casts\DateTime as DateTimeCast;
 use DocusealCo\Docuseal\Concerns\HandlesConnection;
+use DocusealCo\Docuseal\Concerns\OverridesDataObject;
 use DocusealCo\Docuseal\Requests\Submitters\GetSubmitter;
 use DocusealCo\Docuseal\Requests\Submitters\ListAllSubmitters;
 use DocusealCo\Docuseal\Requests\Submitters\UpdateSubmitter;
@@ -18,6 +19,7 @@ use Spatie\LaravelData\Optional;
 class Submitter extends Data
 {
     use HandlesConnection;
+    use OverridesDataObject;
 
     public int $id;
 
