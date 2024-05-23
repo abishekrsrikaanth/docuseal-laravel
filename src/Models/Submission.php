@@ -62,6 +62,17 @@ class Submission extends Data
     #[WithCast(DateTimeCast::class)]
     public ?DateTime $completed_at;
 
+    public ?string $completed_redirect_url;
+
+    public ?string $bcc_completed;
+
+    public ?string $reply_to;
+
+    public ?Message $message;
+
+    /** @var Field[] */
+    public ?array $fields;
+
     /**
      * @throws FatalRequestException
      * @throws RequestException
