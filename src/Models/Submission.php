@@ -5,6 +5,8 @@ namespace DocusealCo\Docuseal\Models;
 use DateTime;
 use DocusealCo\Docuseal\Casts\DateTime as DateTimeCast;
 use DocusealCo\Docuseal\Concerns\HandlesConnection;
+use DocusealCo\Docuseal\Concerns\HandlesDataFilter;
+use DocusealCo\Docuseal\Enums\SubmissionOrder;
 use DocusealCo\Docuseal\Requests\Submissions\ArchiveSubmission;
 use DocusealCo\Docuseal\Requests\Submissions\CreateSubmission;
 use DocusealCo\Docuseal\Requests\Submissions\GetSubmission;
@@ -12,19 +14,26 @@ use DocusealCo\Docuseal\Requests\Submissions\ListAllSubmissions;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 use Spatie\LaravelData\Attributes\WithCast;
+use Spatie\LaravelData\Casts\EnumCast;
 use Spatie\LaravelData\Data;
 
 class Submission extends Data
 {
     use HandlesConnection;
+    use HandlesDataFilter;
 
     public int $id;
 
     public string $source;
 
+    public bool $send_email = false;
+
+    public bool $send_sms = false;
+
     public ?string $audit_log_url;
 
-    public string $submitters_order;
+    #[WithCast(EnumCast::class)]
+    public SubmissionOrder $submitters_order;
 
     #[WithCast(DateTimeCast::class)]
     public DateTime $created_at;
@@ -97,6 +106,11 @@ class Submission extends Data
 
     public function toCreateSubmissionArray(): array
     {
-        return [];
+        return $this->handleNullData([
+            'template_id' => $this->template->id,
+            'send_email' => $this->send_email,
+            'send_sms' => $this->send_sms,
+            'order' => $this->submitters_order->value,
+        ]);
     }
 }
