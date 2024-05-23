@@ -70,9 +70,6 @@ class Submission extends Data
 
     public ?Message $message;
 
-    /** @var Field[] */
-    public ?array $fields;
-
     /**
      * @throws FatalRequestException
      * @throws RequestException
@@ -122,6 +119,11 @@ class Submission extends Data
             'send_email' => $this->send_email,
             'send_sms' => $this->send_sms,
             'order' => $this->submitters_order->value,
+            'completed_redirect_url' => $this->completed_redirect_url,
+            'bcc_completed' => $this->bcc_completed,
+            'reply_to' => $this->reply_to,
+            'message' => $this->message?->toArray() ?? [],
+            'submitters' => $this->submitters,
         ]);
     }
 }

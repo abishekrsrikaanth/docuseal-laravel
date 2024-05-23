@@ -77,9 +77,22 @@ class Submitter extends Data
 
     public ?string $submission_url;
 
+    public bool $send_email = true;
+
+    public bool $send_sms = false;
+
     public Template|Optional $template;
 
     public Submission|Optional $submission;
+
+    /** @var Field[] */
+    public array|Optional $fields;
+
+    public ?string $completed_redirect_url;
+
+    public ?string $bcc_completed;
+
+    public ?string $reply_to;
 
     /**
      * @throws FatalRequestException
