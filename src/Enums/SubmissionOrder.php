@@ -4,6 +4,6 @@ namespace DocusealCo\Docuseal\Enums;
 
 enum SubmissionOrder: string
 {
-    case Reserved = 'reserved';
+    case Preserved = 'preserved';
     case Random = 'random';
 }
