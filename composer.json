@@ -1,12 +1,12 @@
 {
-    "name": "docuseal/docuseal-laravel",
+    "name": "abishekrsrikaanth/docuseal-laravel",
     "description": "Laravel SDK for Docuseal",
     "keywords": [
         "Docuseal",
         "laravel",
         "docuseal-laravel"
     ],
-    "homepage": "https://github.com/docuseal/docuseal-laravel",
+    "homepage": "https://github.com/abishekrsrikaanth/docuseal-laravel",
     "license": "MIT",
     "authors": [
         {
@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/contracts": "^10.0||^11.0",
+        "illuminate/contracts": "^10.0||^11.0||^12.0||^13.0",
         "saloonphp/saloon": "^3.0",
         "spatie/laravel-data": "^4.6",
         "spatie/laravel-package-tools": "^1.16"
